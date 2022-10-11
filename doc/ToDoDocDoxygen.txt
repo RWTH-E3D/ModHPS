@@ -1,0 +1,4 @@
+1) Open folder 'HPM/src' in terminal
+2) type 'doxygen configFileDoxygen'
+3) Open folder 'doc/html' and open a html file
+
