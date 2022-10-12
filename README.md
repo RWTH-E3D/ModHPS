@@ -6,24 +6,21 @@
 
 ## Quick start
 
-Optional: Change input-data in XML (folder 'HPM/import').
+Optional: Change input-data in XML (folder 'ModHPS/import').
 
-Open folder 'HPM/src' in terminal and type:
+Compile: Open folder 'ModHPS/src' in terminal and type:
 ```
-g++ -o ../a.out heatpump.cpp hplink.cpp hps.cpp parser.cpp hpcore.cpp building.cpp UseGNU.cpp PlottingSettings.cpp
-```
+g++ -std=c++11 -o ../ModHPS *.cpp
 
-For co-simulation with an included python script type instead: 
-```
-g++ -I/usr/include/python2.7 -includePython.h -o ../a.out heatpump.cpp hplink.cpp hps.cpp parser.cpp hpcore.cpp building.cpp UseGNU.cpp PlottingSettings.cpp -lpython2.7 -L/usr/lib/python2.7
 ```
 
-Open folder 'HPM/run' in terminal and type:
+Run executable ModHPS: 
+Open folder 'ModHPS/run' in terminal and type:
 ```
-../a.out
+../ModHPS
 ```
 
-Results in folder 'HPM/run/hpm'. 
+Results in folder 'ModHPS/run/hpm'. 
 
 
 ## Structure of the repository
@@ -43,23 +40,25 @@ Open folder 'doc/html' and open a html file.
 
 The following publication has to be cited for the use of the code.
 ```bibtex
-@article{WeckPonten2022,
-  title={Simplified heat pump model integrated in a tool chain for digitally and simulation-based planning shallow geothermal systems},
-  author={Weck-Ponten, Sebastian and Frisch, J{\'e}r{\^o}me and {van Treeck}, Christoph},
-  journal={Geothermics},
-  volume={xx},
-  number={xx},
-  pages={xx},
-  year={2022},
-  doi = {xxx},
-  publisher={Elsevier}
-}
+@article{WECKPONTEN2022102579,
+title = {Simplified heat pump system model integrated in a tool chain for digitally and simulation-based planning shallow geothermal systems},
+journal = {Geothermics},
+volume = {106},
+pages = {102579},
+year = {2022},
+issn = {0375-6505},
+doi = {https://doi.org/10.1016/j.geothermics.2022.102579},
+url = {https://www.sciencedirect.com/science/article/pii/S0375650522002255},
+author = {Sebastian Weck-Ponten and Jérôme Frisch and Christoph {van Treeck}},
+keywords = {Heat pump model, Tool chain, Planning shallow geothermal systems, Early planning phase, Geothermal energy},
+abstract = {In planning tools for shallow geothermal source systems, the heat pump is often considered in a highly simplified way without any dedicated control behavior or individual system setup. In this article, a simplified black-box heat pump system model for individual buildings up to city districts is presented that can be coupled to subsurface models. The model contains simplified algorithms for thermal storage balances and control strategies and is integrated into a tool chain for planning shallow geothermal systems in the early planning phase. The source code of the presented heat pump model is provided open-source according to the MIT license.}
+
 @software{ModHPS,
 	title        = {ModHPS},
 	author       = {Weck-Ponten, Sebastian},
 	url          = {https://github.com/RWTH-E3D/ModHPS},
 	version      = {1.0},
-	date         = {2023-01-01}
+	date         = {2022-10-11}
 }
 ```
 

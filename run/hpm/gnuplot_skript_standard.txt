@@ -1,0 +1,29 @@
+set format x "%10.0f"
+set xrange [0:3.15364e+07]
+set yrange [-6:62]
+set y2range [0:*]
+set xtics ("0" 0, "73" 6307200, "146" 12614400, "219" 18921600, "292" 25228800, "365" 31536000)
+set mxtics 3
+set ytics nomirror
+set ytics 5
+set y2tics 1000
+set xtics scale 5font "Myriad Pro, 20"
+set xlabel offset 0,-1 font "Myriad Pro, 30"
+set ytics scale 5font "Myriad Pro, 20"
+set ylabel offset -2,0 font "Myriad Pro, 30"
+set y2tics scale 5font "Myriad Pro, 20"
+set y2label offset 3.5,0 font "Myriad Pro, 30"
+set key font 'Myriad Pro,20'
+set key at screen 0.5,0.075 horizontal center
+set xlabel 'Zeit [d]'
+set ylabel 'Temperatur [°C]'
+set y2label 'Leistungsbedarf [W]'
+set lmargin 15 + -1.5
+set rmargin 15 + 0
+set tmargin 5 + -1
+set bmargin 15 + -1.5
+set size 1,1
+set terminal pdf enhanced size 11.7,8.3
+set output 'hpm/results_HP2_year_2.pdf'
+plot 'hpm/results_HP2_year_2.txt' every 1 using ($1-31536000):15 title 'TWW-Speicher-Temperatur' with lines dashtype 1  linewidth 0.5  linecolor rgb 'navy'  axis x1y1 , 'hpm/results_HP2_year_2.txt' every 1 using ($1-31536000):5 title 'TWW-Bedarf' with lines dashtype 1  linewidth 0.5  linecolor rgb '#00549F'  axis x1y2 , 'hpm/results_HP2_year_2.txt' every 1 using ($1-31536000):14 title 'Puffer-Temperatur' with lines dashtype 1  linewidth 0.5  linecolor rgb 'red'  axis x1y1 , 'hpm/results_HP2_year_2.txt' every 1 using ($1-31536000):4 title 'Heizleistungsbedarf' with lines dashtype 1  linewidth 0.5  linecolor rgb '#BDCD00'  axis x1y2 , 'hpm/results_HP2_year_2.txt' every 1 using ($1-31536000):17 title 'Sole-Temperaturdifferenz' with lines dashtype 1  linewidth 0.5  linecolor rgb 'orange'  axis x1y1 , 'hpm/results_HP2_year_2.txt' every 1 using ($1-31536000):2 title 'Soleaustrittstemperatur' with lines dashtype 1  linewidth 3  linecolor rgb 'dark-violet'  axis x1y1 
+

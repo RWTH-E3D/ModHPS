@@ -1,0 +1,46 @@
+#Results of heat pump HPTest
+#Name of heat pump: 'WPC 07 / WPC 07 cool'
+#Heating energy of linked buildings per year: 10660 kWh
+#DHW energy of linked buildings per year: 2339.65 kWh
+#Linked bhe to heat pump: 
+#1579858938372
+#Vdot_soil of each BHE: 
+#0.0005056
+#Simulated time = 17520 h
+#Simulated end time in years = 2 years
+#BlockingTime = 1 h
+#Second Heat generator on during blocking time = 0 (0 = false; 1 = true)
+#operating mode = 1 (0=monovalent, 1=monoenergetic, 2=bivalent parallel, 3=bivalent teilparallel, 4=bivalent alternativ)
+#application range = 2 (0=heating, 1=dhw, 2=heating+dhw, 3=heating+cooling, 4=heating+cooling+dhw, 5=cooling, 6=dhw+cooling)
+#heating storage volume = 1000 l, T_st_min = 25 °C, T_st_max = 35 °C, dhw storage volume = 300 l, T_st_min_dhw = 50 °C, T_st_max_dhw = 56 °C
+#
+#Middled run time of heat pump over all years = 1601.17 h
+#Summed time over all years, when heat pump was shut down because of subsurface boundary condition  = 3285 h
+#Middled heating coverage ratio over all years = 81 %
+#Middled dhw coverage ratio over all years = 77 %
+#Middled coverage ratio (dhw + heating) over all years = 80 %
+#Middled coverage ratio (dhw + heating) of second heat generator over all years = 1 %
+#Middled coverage ratio cooling over all years = 0 %
+#Middled Seasonal Performance Factor (SPF_WP) of heat pump over all years = 4.36019
+#Middled energy demand of soil pump over all years = 112.082 kWh/a
+#Middled Seasonal Performance Factor (SPF_WPA) of heat pump including soil pump and second heat generator over all years = 4.00527
+# 
+#y = year [a]
+#t_run = run time of HP [h]
+#E_h = Heating energy of heat pump in this year [kWh]
+#HCR = annual heating coverage ratio of heat pump [%]
+#HCRsecHG = annual heating coverage ratio of second heat generator[%]
+#E_dhw = Dhw energy of heat pump in this year [kWh]
+#dhwCR = annual DHW coverage ratio of heat pump [%]
+#dhwCRsecHG = annual dhw coverage ratio of second heat generator[%]
+#CR = annual coverage ratio (heating + dhw) of heat pump [%]
+#CRsecHG = annual coverage ratio (heating + dhw) of second heat generator[%]
+#E_h+dhw = Energy of heating and dhw of heat pump in this year [kWh]
+#E_el = Electrical energy demand of heat pump in this year [kWh]
+#SPF = annual middled Seasonal Performance Factor (SPF) (heating+dhw)
+#SPF_WPA = annual middled Seasonal Performance Factor (SPF) (heating+dhw) including soil pump and second heat generator
+# 
+# 
+#y:	t_run:	E_h:	HCR:	HCRsecHG:	E_dhw:	dhwCR:	dhwCRsecHG:	E_h+dhw:	CR:	CRsecHG:	CRcool:	E_el:	SPF_WP:	SPF_WPA:
+1	1724.9	11065.8	100	0	2886.53	100	0	13952.3	100	0	0	3025.8	4.61112	4.43417
+2	1477.45	6722.22	61	0	1532.14	53	9	8254.36	59	2	0	2008.72	4.10926	3.57637

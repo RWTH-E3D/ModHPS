@@ -1,0 +1,29 @@
+set format x "%10.0f"
+set xrange [0:3.15364e+07]
+set yrange [-6:12]
+set y2range [0:7]
+set xtics ("0" 0, "73" 6307200, "146" 12614400, "219" 18921600, "292" 25228800, "365" 31536000)
+set mxtics 3
+set ytics nomirror
+set ytics 2
+set y2tics 0.5
+set xtics scale 5font "Myriad Pro, 20"
+set xlabel offset 0,-1 font "Myriad Pro, 30"
+set ytics scale 5font "Myriad Pro, 20"
+set ylabel offset -2,0 font "Myriad Pro, 30"
+set y2tics scale 5font "Myriad Pro, 20"
+set y2label offset 2.5,0 font "Myriad Pro, 30"
+set key font 'Myriad Pro,20'
+set key at screen 0.5,0.075 horizontal center
+set xlabel 'Zeit [d]'
+set ylabel 'Temperatur [°C]'
+set y2label 'COP* [-]'
+set lmargin 15 + -1.5
+set rmargin 15 + 0
+set tmargin 5 + -1.5
+set bmargin 15 + -1.5
+set size 1,1
+set terminal pdf enhanced size 11.7,8.3
+set output 'hpm/results_Tsoil_COP_HP2.pdf'
+plot 'hpm/results_HP2_year_1_agg_COP*_e_r_s_t_e_s_,_J_a_h_r.txt' every 1 using ($1-0):13 title 'COP*_e_r_s_t_e_s_,_J_a_h_r' with points pointtype 7  pointsize 0.1  linecolor rgb 'skyblue'  axis x1y2 , 'hpm/results_HP2_year_2_agg_COP*_l_e_t_z_t_e_s_,_J_a_h_r.txt' every 1 using ($1-31536000):13 title 'COP*_l_e_t_z_t_e_s_,_J_a_h_r' with points pointtype 7  pointsize 0.1  linecolor rgb 'grey'  axis x1y2 , 'hpm/results_HP2_year_1_agg_COP*_e_r_s_t_e_s_,_J_a_h_r_,_T_a_g_e_s_m_i_t_t_e_l.txt' every 1 using ($1-0):13 title 'COP*_e_r_s_t_e_s_,_J_a_h_r_,_T_a_g_e_s_m_i_t_t_e_l' with lines dashtype 1  linewidth 1.5  linecolor rgb 'navy'  axis x1y2 , 'hpm/results_HP2_year_2_agg_COP*_l_e_t_z_t_e_s_,_J_a_h_r_,_T_a_g_e_s_m_i_t_t_e_l.txt' every 1 using ($1-31536000):13 title 'COP*_l_e_t_z_t_e_s_,_J_a_h_r_,_T_a_g_e_s_m_i_t_t_e_l' with lines dashtype 2  linewidth 5  linecolor rgb 'grey10'  axis x1y2 , 'hpm/results_HP2_year_1_agg_T_S_o_l_e_,_a_u_s_,_e_r_s_t_e_s_ _J_a_h_r.txt' every 1 using ($1-0):2 title 'T_S_o_l_e_,_a_u_s_,_e_r_s_t_e_s_ _J_a_h_r' with lines dashtype 1  linewidth 3  linecolor rgb 'red'  axis x1y1 , 'hpm/results_HP2_year_2_agg_T_S_o_l_e_,_a_u_s_,_l_e_t_z_t_e_s_ _J_a_h_r.txt' every 1 using ($1-31536000):2 title 'T_S_o_l_e_,_a_u_s_,_l_e_t_z_t_e_s_ _J_a_h_r' with lines dashtype 2  linewidth 4  linecolor rgb 'orange-red'  axis x1y1 
+
