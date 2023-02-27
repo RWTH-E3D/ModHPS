@@ -44,7 +44,7 @@ bool HpCore::coreParse() {
 
 	ifstream ifile(input);
 	if (!ifile) {
-		input = "../import/xml_file-SeWeDimTool-testCase6New.xml";
+		input = "../import/xml_file-SeWeDimTool-testNew.xml";
 
 		ifstream afile(input);
 		if (!afile) {
