@@ -29,7 +29,7 @@ Under **src** all scripts and necessary files for the functionality of the model
 
 ## Documentation
 
-Open folder 'HPM/src' in terminal and type:
+Open folder 'ModHPS/src' in terminal and type:
 ```
 doxygen configFileDoxygen
 ```
@@ -53,12 +53,22 @@ author = {Sebastian Weck-Ponten and Jérôme Frisch and Christoph {van Treeck}},
 keywords = {Heat pump model, Tool chain, Planning shallow geothermal systems, Early planning phase, Geothermal energy},
 abstract = {In planning tools for shallow geothermal source systems, the heat pump is often considered in a highly simplified way without any dedicated control behavior or individual system setup. In this article, a simplified black-box heat pump system model for individual buildings up to city districts is presented that can be coupled to subsurface models. The model contains simplified algorithms for thermal storage balances and control strategies and is integrated into a tool chain for planning shallow geothermal systems in the early planning phase. The source code of the presented heat pump model is provided open-source according to the MIT license.}
 
+@phdthesis{weckPonten2023simulationsbasiertes,
+  title = {Simulationsbasiertes Mehrebenen-Planungswerkzeug f{\"u}r geothermische W{\"a}rmepumpensysteme},
+  author = {Weck-Ponten, Sebastian},
+  year = {2023},
+  school = {{RWTH Aachen University, Lehrstuhl f{\"u}r Energieeffizientes Bauen - E3D}},
+  address = {Aachen, Germany},
+  month = {September},
+  note = {{DOI: 10.18154/RWTH-2023-09082}}
+}
+
 @software{ModHPS,
 	title        = {ModHPS},
 	author       = {Weck-Ponten, Sebastian},
 	url          = {https://github.com/RWTH-E3D/ModHPS},
-	version      = {1.0},
-	date         = {2022-10-11}
+	version      = {1.1},
+	date         = {2023-11-13}
 }
 ```
 

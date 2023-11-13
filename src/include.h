@@ -36,6 +36,7 @@
 
 #include "rapidxml.hpp" //include rapidXML.h
 #include "rapidxml_print.hpp"
+#include "rapidxml_utils.hpp"
 #include <iterator>
 
 
