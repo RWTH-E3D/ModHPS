@@ -219,7 +219,7 @@ void HPLink::postprocessing(){
 	if(Core.t_sim_end >= 8760 * 3600){
 		Core.makeTXTend();
 		Core.resPlot();
-		//ToDo: Core.writeResToXML();
+		Core.writeResToXML();
 	}
 
 }

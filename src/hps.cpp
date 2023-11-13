@@ -126,7 +126,7 @@ int main() {
 
 
 	int vecSize = vecVnom.size();
-	vector<double> T_MPF_out(vecSize, 273.15+8);
+	vector<double> T_MPF_out(vecSize, 273.15+10);
 /*	vector<double> T_MPF_out;
 	double input;
 	for(int i=0; i < vecVnom.size(); i++){//test
@@ -223,7 +223,7 @@ int main() {
 		if (ugModelType == 1){ //1 = decreasing soil temperature;
 			//loop for decreasing T_Soil_out
 			if (time > 0) {
-				res = T_MPF_out[0] - dt_ug / (t_end) * (8+8); // (8+3) = from 8 °C to -3 °C (if starts from 8) //old: res = T_MPF_out[0] - dt / (t_end) * (8+6) = from 8 to -6 -> HP turned off in last year
+				res = T_MPF_out[0] - dt_ug / (t_end) * (10-0); // (8+3) = from 8 °C to -3 °C (if starts from 8) //old: res = T_MPF_out[0] - dt / (t_end) * (8+6) = from 8 to -6 -> HP turned off in last year
 
 				T_MPF_out.assign(vecSize, res);
 				T_MPF_min.assign(vecSize, res+5.5); //T_MPF_min.assign(vecSize, res+5.5);
