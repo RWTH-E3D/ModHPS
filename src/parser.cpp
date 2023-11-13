@@ -225,6 +225,28 @@ bool Parser::parse(const char* XML_setting) { //bool HeatPump::parse(const char*
 		//cout << "HPM: Parser: Test: core->HP.rhoCp_soil = " << core->HP.rhoCp_soil  << "\n";
 		//test if bhes on same HP have the same value? -> XML-checker
 
+		//test
+		/*for (xml_node<> * ResSCOP_WPA_node = HP_node->first_node("heat_pump:ResSCOP_WPA"); ResSCOP_WPA_node; ResSCOP_WPA_node = ResSCOP_WPA_node->next_sibling()){
+			cout << "parser.cpp: writeResToXML: string StringTest = to_string(3.33333);" << "\n"; //test
+			string StringTest = to_string(3.33333);
+			cout << "HPC: writeResToXML: StringTest = " << StringTest << "\n"; //test
+			cout << "HPC: writeResToXML: const char * text = doc.allocate_string(StringTest.c_str()); " << "\n"; //test
+			const char * text = doc.allocate_string(StringTest.c_str());
+			cout << "HPC: writeResToXML: const char * text = " << text << "\n"; //test
+			cout << "HPC: writeResToXML: xml_node<> * StringTest = HP_node->first_node(heat_pump:ResSCOP_WPA); " << "\n"; //test
+			//xml_node<> * ResSCOP_WPA_node = HP_node->first_node("heat_pump:ResSCOP_WPA");
+			//cout << "HPC: writeResToXML: ResSCOP_WPA_node->value(text); " << "\n"; //test
+			//ResSCOP_WPA_node->value(text);
+			cout << "HPC: writeResToXML: ResSCOP_WPA_node = doc.allocate_node(node_element, text); " << "\n"; //test
+			ResSCOP_WPA_node = doc.allocate_node(node_element, text); 
+		}
+		cout << "HPC: writeResToXML: Done! " << endl;
+    	std::ofstream myfile;
+    	cout << "HPC: writeResToXML: myfile.open (./xml_file.xml); " << "\n"; //test
+    	myfile.open ("../run/hpm/xml_file.xml");
+    	myfile << doc;*/	
+
+
 		for (xml_node<> * HP_linked_bhe_node = HP_node->first_node("heat_pump:linked_bhe"); HP_linked_bhe_node; HP_linked_bhe_node = HP_linked_bhe_node->next_sibling("heat_pump:linked_bhe"))
 		parseString2VectorString(core->Phy.all_linked_bhe,HP_linked_bhe_node->value());
 

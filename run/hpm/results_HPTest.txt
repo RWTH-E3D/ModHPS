@@ -11,19 +11,19 @@
 #BlockingTime = 1 h
 #Second Heat generator on during blocking time = 0 (0 = false; 1 = true)
 #operating mode = 1 (0=monovalent, 1=monoenergetic, 2=bivalent parallel, 3=bivalent teilparallel, 4=bivalent alternativ)
-#application range = 2 (0=heating, 1=dhw, 2=heating+dhw, 3=heating+cooling, 4=heating+cooling+dhw, 5=cooling, 6=dhw+cooling)
+#application range = 4 (0=heating, 1=dhw, 2=heating+dhw, 3=heating+cooling, 4=heating+cooling+dhw, 5=cooling, 6=dhw+cooling)
 #heating storage volume = 1000 l, T_st_min = 25 °C, T_st_max = 35 °C, dhw storage volume = 300 l, T_st_min_dhw = 50 °C, T_st_max_dhw = 56 °C
 #
-#Middled run time of heat pump over all years = 1601.17 h
-#Summed time over all years, when heat pump was shut down because of subsurface boundary condition  = 3285 h
-#Middled heating coverage ratio over all years = 81 %
-#Middled dhw coverage ratio over all years = 77 %
-#Middled coverage ratio (dhw + heating) over all years = 80 %
-#Middled coverage ratio (dhw + heating) of second heat generator over all years = 1 %
-#Middled coverage ratio cooling over all years = 0 %
-#Middled Seasonal Performance Factor (SPF_WP) of heat pump over all years = 4.36019
-#Middled energy demand of soil pump over all years = 112.082 kWh/a
-#Middled Seasonal Performance Factor (SPF_WPA) of heat pump including soil pump and second heat generator over all years = 4.00527
+#Middled run time of heat pump over all years = 1688.96 h
+#Summed time over all years, when heat pump was shut down because of subsurface boundary condition  = 0 h
+#Middled heating coverage ratio over all years = 100 %
+#Middled dhw coverage ratio over all years = 100 %
+#Middled coverage ratio (dhw + heating) over all years = 100 %
+#Middled coverage ratio (dhw + heating) of second heat generator over all years = 0 %
+#Middled coverage ratio cooling over all years = 100 %
+#Middled Seasonal Performance Factor (SPF_WP) of heat pump over all years = 4.72632
+#Middled energy demand of soil pump over all years = 118.227 kWh/a
+#Middled Seasonal Performance Factor (SPF_WPA) of heat pump including soil pump and second heat generator over all years = 4.54493
 # 
 #y = year [a]
 #t_run = run time of HP [h]
@@ -42,5 +42,5 @@
 # 
 # 
 #y:	t_run:	E_h:	HCR:	HCRsecHG:	E_dhw:	dhwCR:	dhwCRsecHG:	E_h+dhw:	CR:	CRsecHG:	CRcool:	E_el:	SPF_WP:	SPF_WPA:
-1	1724.9	11065.8	100	0	2886.53	100	0	13952.3	100	0	0	3025.8	4.61112	4.43417
-2	1477.45	6722.22	61	0	1532.14	53	9	8254.36	59	2	0	2008.72	4.10926	3.57637
+1	1587.63	11065	100	0	2886.53	100	0	13951.5	100	0	100	2784.44	5.01053	4.81822
+2	1790.28	11062.5	100	0	2887.25	100	0	13949.7	100	0	100	3140.34	4.4421	4.27163

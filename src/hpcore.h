@@ -66,9 +66,12 @@ public:
 	void secHeatGenControlLoadStorageFull(int i); //necessary for alternative and part parallel //only second heat generator on && only called in modus heating
 	void secHeatGenLoadStorageFull(int i); //necessary for alternative and part parallel //only second heat generator on && only called in modus heating
 
-	//ToDo: void writeResToXML();
+	void writeResToXML();
 
 private:
+
+//xml path
+	const char* input;
 //+++ time +++
 	double t; //time [s]
 	double t_valid; //time [s] for coupling my model to MPFluidGeTIS

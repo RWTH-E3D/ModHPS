@@ -7,9 +7,12 @@
 
 #include "include.h"
 
+using namespace rapidxml;
 using namespace std;
 
+
 HpCore::HpCore() {
+	input = "../import/xml_file.xml";
 	t = 0.0;
 	t_valid = 0.0;
 	year = 0;
@@ -39,12 +42,13 @@ bool HpCore::coreParse() {
 
 	Parser ParseObj(this);
 
-	const char* input = "../import/xml_file-SeWeDimTool-testNew.xml"; // "../import/xml_file-SeWeDimTool-test.xml"//"../import/XML_validation.xml"; //"../import/Muster-XML_v_1.20.xml"; //const char* input = "../import/xml_file.xml";
+
+	input = "../import/xml_file.xml"; 
+
 
 
 	ifstream ifile(input);
 	if (!ifile) {
-		input = "../import/xml_file-SeWeDimTool-testNew.xml";
 
 		ifstream afile(input);
 		if (!afile) {
@@ -995,7 +999,6 @@ void HpCore::updateValues() {
 		//cout << "actYear after actYear++ = " << actYear << "\n"; //test
 	}
 
-	//ToDo: if iteration over a year and there are some time steps too much -> take the more time steps in vector for next step -> clear the rest
 
 	//ToDo: dont need it any more?? What happens if no iteration? -> because of saveOverhang()?
 /*	if (vecTime.size() >= yearVecSize) { //vecTime.size() >= 8760 * 3600 / dt_comm
@@ -1965,7 +1968,10 @@ void HpCore::cooling(int i) {
 			heatPumps[i].Q_soil = heatPumps[i].Q_h - heatPumps[i].P_el - heatPumps[i].Q_COOL_hp_time; //Assumption: passive cooling can be done in every situation, except if T_soil_out is too high //Q_soil can be negative because of cooling -> T_soil_in rises
 			heatPumps[i].energyCooling = heatPumps[i].energyCooling + dt_comm * heatPumps[i].Q_COOL_hp_time; //full cooling load coverage if (heatPumps[i].T_soil_out <= heatPumps[i].T_maxPassivCooling)
 			heatPumps[i].Vdot_soilBHEcooling = heatPumps[i].Vdot_soilBHEcoolingInit;
-			heatPumps[i].Vdot_soil_bhe = heatPumps[i].Vdot_soil_bhe + heatPumps[i].Vdot_soilBHEcooling; //Assumption: passive cooling can be done in every situation, except if T_soil_out is too high //ToDo: change! -> mode for cooling?
+			if(heatPumps[i].Vdot_soil < heatPumps[i].Vdot_soilCooling){
+				heatPumps[i].Vdot_soil = heatPumps[i].Vdot_soilCooling;
+				heatPumps[i].Vdot_soil_bhe = heatPumps[i].Vdot_soilBHEcooling;
+			}
 			//cout << "calculate T_soil_in" << "\n";//test
 			//commented out for test validation
 			heatPumps[i].T_soil_in = heatPumps[i].T_soil_out - heatPumps[i].Q_soil / ( (heatPumps[i].Vdot_soil + heatPumps[i].Vdot_soilCooling) * heatPumps[i].rhoCp_soil); //Assumption: passive cooling can be done in every situation, except if T_soil_out is too high
@@ -3939,14 +3945,68 @@ void HpCore::resPlot() {
 
 }
 
-//ToDo:
-/*void HpCore::writeResToXML() {
-	//ToDo: <heat_pump:ResSCOP_WP>
-	//ToDo: <heat_pump:ResSCOP_WPA>
-	//ToDo: <heat_pump:ResSCOP_WPHA>
-	//ToDo: <heat_pump:ResCoverRatioH>
-	//ToDo: <heat_pump:ResCoverRatioDHW>
-	//ToDo: <heat_pump:ResCoverRatioTotal>
-	//ToDo: <heat_pump:ResCRatioTotal2HeatGen>
 
-}*/
+void HpCore::writeResToXML() {
+	cout << "HPC: writeResToXML" << "\n"; //test
+
+
+// load the XLM file
+file<> xmlFile("../import/xml_file.xml");
+xml_document<> xmlDoc;
+xmlDoc.parse<0>(xmlFile.data());
+
+// // Finden Sie den gewünschten XML-Knoten
+//root node
+xml_node<> * rootNode = xmlDoc.first_node("getisData");
+string testHPID; 
+unsigned int hpInXML = 0;
+string valueStr;
+const char* valueCStr;
+//const char* testJAZ;
+for (xml_node<> * HP_node = rootNode->first_node("HeatPumpCollection")->first_node("heat_pump"); HP_node; HP_node = HP_node->next_sibling()){
+	testHPID = HP_node->first_attribute()->next_attribute("heat_pump:id")->value();
+	cout << "HPC: writeResToXML: ---------------> heat_pump:id = " << testHPID << "\n"; //test	
+	cout << "HPC: writeResToXML: ---------------> hpInXML = " << hpInXML << "\n"; //test
+	cout << "HPC: writeResToXML: ---------------> heatPumps[hpInXML].JAZ_WPAmiddled = " << heatPumps[hpInXML].JAZ_WPAmiddled << "\n"; //test
+
+	valueStr = to_string(heatPumps[hpInXML].JAZ_WPAmiddled);
+	valueCStr = valueStr.c_str();
+	//cout << "-> valueCStr = " << valueCStr << endl;
+
+
+	xml_node<>* JAZwpaNode = xmlDoc.allocate_node(node_element, "heat_pump:ResSCOP_WPA"); //xml_node<> * JAZwpaNode = HP_node->first_node("heat_pump:ResSCOP_WPA");
+	//testJAZ = JAZwpaNode->value();
+	//cout << "HPC: writeResToXML: ---------------> testJAZ before change = " << testJAZ << "\n"; //test	
+	JAZwpaNode->value(xmlDoc.allocate_string(valueCStr));
+	xml_node<> * targetNode = HP_node->first_node("heat_pump:ResSCOP_WPA");
+	HP_node->remove_node(targetNode); 
+	xml_node<> * JAZwphaNode = HP_node->first_node("heat_pump:ResSCOP_WPHA");
+	HP_node->insert_node(JAZwphaNode, JAZwpaNode); //appends a new node at the beginning of each HP_node //rootNode->first_node("HeatPumpCollection")->first_node("heat_pump")->insert_node(rootNode->first_node("HeatPumpCollection")->first_node("heat_pump")->first_node(), JAZwpaNode); //appends a new node at the beginning of HP_node (only first sibling!!) //xmlDoc.append_node(JAZwpaNode); //appends a new node at end of XML //ToDo: andere Funktionen testen: clone_node(); void insert_node(xml_node< Ch > *where, xml_node< Ch > *child);
+	//testJAZ = JAZwpaNode->value();
+	//cout << "HPC: writeResToXML: ---------------> testJAZ after insert_node = " << testJAZ << "\n"; //test
+
+	valueStr = to_string(heatPumps[hpInXML].middledCR);
+	valueCStr = valueStr.c_str();
+	//cout << "-> valueCStr = " << valueCStr << endl;
+	cout << "HPC: writeResToXML: ---------------> heatPumps[hpInXML].middledCR = " << heatPumps[hpInXML].middledCR << "\n"; //test
+
+	xml_node<>* coverRatioNode = xmlDoc.allocate_node(node_element, "heat_pump:ResCoverRatioTotal"); //xml_node<> * JAZwpaNode = HP_node->first_node("heat_pump:ResSCOP_WPA");
+	coverRatioNode->value(xmlDoc.allocate_string(valueCStr));
+	xml_node<> * targetCRNode = HP_node->first_node("heat_pump:ResCoverRatioTotal");
+	HP_node->remove_node(targetCRNode); 
+	xml_node<> * crSecHeatGenNode = HP_node->first_node("heat_pump:ResCRatioTotal2HeatGen");
+	HP_node->insert_node(crSecHeatGenNode, coverRatioNode); //appends a new node at the beginning of each HP_node //rootNode->first_node("HeatPumpCollection")->first_node("heat_pump")->insert_node(rootNode->first_node("HeatPumpCollection")->first_node("heat_pump")->first_node(), JAZwpaNode); //appends a new node at the beginning of HP_node (only first sibling!!) //xmlDoc.append_node(JAZwpaNode); //appends a new node at end of XML //ToDo: andere Funktionen testen: clone_node(); void insert_node(xml_node< Ch > *where, xml_node< Ch > *child);
+
+
+
+	hpInXML = hpInXML+1;
+}
+
+
+//save xmlDoc into new XML file 
+ofstream outFile("../run/hpm/xml_file.xml");
+outFile << xmlDoc;
+outFile.close();
+
+
+}

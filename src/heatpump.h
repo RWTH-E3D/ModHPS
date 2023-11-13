@@ -57,7 +57,7 @@ private:
 //+++ cooling +++
     unsigned int coolingType; // 0 = passive; 1 = active
     double T_maxPassivCooling;
-    double Vdot_soilCooling; //necessary for calculating T_soil_in
+    double Vdot_soilCooling; //parsed; necessary for calculating T_soil_in
     double Vdot_soilBHEcoolingInit; //parsed
     double Vdot_soilBHEcooling; // 0 or =Vdot_soilBHEcoolingInit
     double vaildVdot_soilBHEcooling; // 0 or =Vdot_soilBHEcoolingInit
